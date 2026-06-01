@@ -30,6 +30,14 @@ header {
 .report-title { font-size: 12px; color: #a0a0c0; }
 .record-count { font-size: 12px; color: #a0a0c0; }
 
+#mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
 .loading-overlay {
   display: flex;
   flex-direction: column;
@@ -54,17 +62,18 @@ header {
   display: flex;
   flex: 1;
   overflow: hidden;
+  min-height: 0;
 }
 
 .sidebar {
   width: 280px;
+  min-width: 260px;
   flex-shrink: 0;
   background: #fff;
   border-right: 1px solid #e0e0e0;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  overflow-x: auto;
+  min-height: 0;
 }
 
 .panel {
@@ -202,6 +211,8 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-width: 0;
+  min-height: 0;
 }
 
 .toolbar {
@@ -236,6 +247,7 @@ header {
   flex: 1;
   overflow: auto;
   background: #fff;
+  min-height: 0;
 }
 
 .results-table {
@@ -292,3 +304,25 @@ header {
 ::-webkit-scrollbar-track { background: #f0f0f0; }
 ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .search-input { width: 140px; }
+}
+
+@media (max-width: 600px) {
+  header { flex-direction: column; gap: 4px; text-align: center; }
+  .header-left { flex-direction: column; gap: 2px; }
+  .toolbar { flex-direction: column; gap: 8px; align-items: stretch; }
+  .toolbar-left { flex-wrap: wrap; }
+  .search-input { width: 100%; }
+  .filter-row { flex-wrap: wrap; }
+  .filter-field, .filter-op, .filter-val { min-width: 80px; flex: 1 1 auto; }
+}
