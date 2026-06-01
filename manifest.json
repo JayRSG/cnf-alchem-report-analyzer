@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "CNF Report Analyzer",
+  "version": "1.0.0",
+  "description": "Auto-discover, extract, query, and export report data from apps.univanbd.com",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://apps.univanbd.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CNF Report Analyzer",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://apps.univanbd.com/*"],
+      "js": ["lib/extractor.js", "lib/typemapper.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

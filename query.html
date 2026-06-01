@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CNF Report Analyzer - Query Builder</title>
+  <link rel="stylesheet" href="styles/query.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-left">
+        <h1>CNF Report Analyzer</h1>
+        <span id="reportTitle" class="report-title"></span>
+      </div>
+      <div class="header-right">
+        <span id="recordCount" class="record-count"></span>
+      </div>
+    </header>
+
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="spinner"></div>
+      <p>Loading report data...</p>
+    </div>
+
+    <div id="mainContent" style="display:none;">
+      <div class="layout">
+        <aside class="sidebar">
+          <section class="panel">
+            <h2 class="panel-title">Detected Fields</h2>
+            <div id="fieldsList" class="fields-list"></div>
+          </section>
+
+          <section class="panel">
+            <h2 class="panel-title">
+              Filters
+              <button id="addFilterBtn" class="btn-sm" title="Add filter">+</button>
+            </h2>
+            <div id="filtersContainer" class="filters-container"></div>
+            <button id="applyFiltersBtn" class="btn btn-primary btn-full">Apply Filters</button>
+            <button id="clearFiltersBtn" class="btn btn-secondary btn-full">Clear All</button>
+          </section>
+
+          <section class="panel">
+            <h2 class="panel-title">Aggregation</h2>
+            <div class="agg-row">
+              <label>Function</label>
+              <select id="aggFunction" class="select-full"></select>
+            </div>
+            <div class="agg-row">
+              <label>Field</label>
+              <select id="aggField" class="select-full"></select>
+            </div>
+            <div class="agg-row">
+              <label>Group by</label>
+              <select id="groupField" class="select-full"></select>
+            </div>
+            <button id="applyAggBtn" class="btn btn-primary btn-full">Apply</button>
+          </section>
+
+          <section class="panel">
+            <h2 class="panel-title">Export</h2>
+            <button id="exportPdfBtn" class="btn btn-primary btn-full">Export as PDF</button>
+            <button id="exportExcelBtn" class="btn btn-success btn-full">Export as Excel</button>
+          </section>
+        </aside>
+
+        <main class="content">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <span id="resultCount" class="result-count">0 records</span>
+              <span id="aggResult" class="agg-result"></span>
+            </div>
+            <div class="toolbar-right">
+              <label class="search-label">
+                <input type="text" id="searchInput" placeholder="Quick search..." class="search-input">
+              </label>
+            </div>
+          </div>
+
+          <div id="tableWrapper" class="table-wrapper">
+            <table id="resultsTable" class="results-table">
+              <thead id="tableHead"></thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/queryengine.js"></script>
+  <script src="lib/exporters.js"></script>
+  <script src="query.js"></script>
+</body>
+</html>
